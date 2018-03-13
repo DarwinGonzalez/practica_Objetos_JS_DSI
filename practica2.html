@@ -105,6 +105,13 @@
             console.log(rectangles[i]);
         }
         
+        function checkColision(rectanguloA, rectanguloB) {
+            if( Math.abs(rectanguloA.get_posX() - rectanguloB.get_posX()) <= 3 && Math.abs(rectanguloA.get_posY() - rectanguloB.get_posY() <= 3)) {
+
+                console.log("HAN CHOCADO");
+            }     
+        }
+        
         function startLoad() {
             var board = document.getElementById("canvas");
             var boardPanel = board.getContext('2d');
@@ -115,6 +122,11 @@
                 rectangles[i].moveRectangle();
                 rectangles[i].drawRectangle(boardPanel);
             }
+            
+            checkColision(rectangles[1], rectangles[2]);
+            checkColision(rectangles[3], rectangles[4]);
+            checkColision(rectangles[5], rectangles[6]);
+            checkColision(rectangles[7], rectangles[8]);
             
             setTimeout("startLoad()",20);
         }       
