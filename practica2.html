@@ -43,6 +43,7 @@
                 this.posY = this.posY + this.movY;
             }
             
+            
             clearBoard(boardPanel) {
                 boardPanel.beginPath();
                 boardPanel.clearRect(0,0,700,500);
@@ -102,13 +103,14 @@
         
         for (var i = 0; i <= 50; i++) {
             rectangles[i] = new Rectangle(getRandomposX(), getRandomposY(), 10, 10, movX, movY, color());
-            console.log(rectangles[i]);
+            //console.log(rectangles[i]);
         }
         
         function checkColision(rectanguloA, rectanguloB) {
-            if( Math.abs(rectanguloA.get_posX() - rectanguloB.get_posX()) <= 3 && Math.abs(rectanguloA.get_posY() - rectanguloB.get_posY() <= 3)) {
+            if( Math.abs(rectanguloA.get_posX() - rectanguloB.get_posX()) <= 1 && Math.abs(rectanguloA.get_posY() - rectanguloB.get_posY() <= 1)) {
 
                 console.log("HAN CHOCADO");
+
             }     
         }
         
@@ -123,17 +125,49 @@
                 rectangles[i].drawRectangle(boardPanel);
             }
             
-            checkColision(rectangles[1], rectangles[2]);
-            checkColision(rectangles[3], rectangles[4]);
-            checkColision(rectangles[5], rectangles[6]);
-            checkColision(rectangles[7], rectangles[8]);
-            
+            checkColision(rectangles[0], rectangles[1]);
+            checkColision(rectangles[0], rectangles[2]);
+           
             setTimeout("startLoad()",20);
         }       
     </script>
     
     <body>
-          <canvas id="canvas" width="700" height="500" style="border:1px solid #000000;"></canvas>
+        <h1>Práctica 2: Desarrollo de Sistemas Informáticos</h1>
+        <canvas id="canvas" width="700" height="500" style="border:1px solid #000000;"></canvas>
+        <h2>Autor: Darwin González Suárez, Marzo de 2018.</h2>
+        <h2> Práctica 2: Objetos en JavaScript</h2>
+            <ul>
+                <li type="disc">La práctica consiste en programar un pequeño script que ponga n
+                objetos en pantalla (representados mediante pequeños rectángulos).</li>
+                <li type="disc">Estos objetos deben moverse en pantalla tanto de forma horizontal
+                como vertical (deben tener velocidad en x e y).</li>
+                <li type="disc">Por supuesto la práctica debe estar orientada a objetos, cada
+                rectángulo será un objeto con sus propiedades (x, y, velocidad, …) y
+                métodos (moverse, chocar, etc).</li>
+                <li type="disc">Al chocar contra los bordes de la pantalla deben invertir el sentido de
+                su movimiento, pero pueden conservar la velocidad.</li>
+                <li type="disc">Una posible mejora es detectar colisiones con el resto de objetos y
+                cambiar de sentido según corresponda.</li>
+                <li type="disc">Se puede definir un borde fijo, no hace falta que ocupe toda la
+                pantalla.</li>
+                <li type="disc">El número inicial de objetos puede ser 50, es decir debes tener un
+                array de 50 instancias del objeto y se instanciará con velocidades
+                aleatorias (tanto horizontal como vertical) dentro de un rango que
+                definirá el alumno haciendo pruebas.
+                </li>
+                <li type="disc">Cuando todo funcione, se creará un segundo script, esta vez en
+                NodeJS que esté a la escucha en el puerto 3000 y ejecute la
+                práctica.</li>
+                <li type="disc">Una posible mejora es pasar por parámetro (en la URL) el numero
+                de objetos a pintar en pantalla.</li>
+                
+            </ul>
     </body>
+    
+    <style type="text/css">
+        h1 {font-size:24px; text-align: center; }
+        h2 {font-size:14px; text-align: center; }
+    </style>
     
 </html>
