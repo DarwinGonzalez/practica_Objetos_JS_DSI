@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Práctica 2 DSI</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <script type="text/javascript">
+    
+        var movX = 2,
+            movY = 2,
+            maxWidth = 690,
+            maxHeight = 490;
+        
+        $(document).ready(startScript);
+        
+        function startScript() {
+            startLoad();
+        }
+        
+        class Rectangle {
+            
+            constructor(posX, posY, width, height, movX, movY, color) {
+                this.posX = posX;
+                this.posY = posY;
+                this.width = width;
+                this.height = height;
+                this.movX = movX;
+                this.movY = movY;
+                this.color = color;
+            }
+            
+            moveRectangle() {
+                if( this.posX >= maxWidth || this.posX <= 1) {
+                    this.movX = this.movX * -1;
+                }
+                
+                if( this.posY >= maxHeight || this.posY <= 1) {
+                    this.movY = this.movY * -1;
+                }
+                
+                this.posX = this.posX + this.movX;
+                this.posY = this.posY + this.movY;
+            }
+            
+            clearBoard(boardPanel) {
+                boardPanel.beginPath();
+                boardPanel.clearRect(0,0,700,500);
+            }
+            
+            drawRectangle(boardPanel) {
+                boardPanel.fillStyle = this.color;
+                boardPanel.fillRect(this.posX, this.posY, this.width, this.height);
+                boardPanel.fill();
+            }
+            
+            get_posX() {
+                return this.posX;
+            }
+            
+            get_posY() {
+                return this.posY;
+            }
+            
+            get_movX() {
+                return this.movX;
+            }
+            
+            get_movY() {
+                return this.movY;
+            }
+            
+            get_color() {
+                return this.color;
+            }
+            
+            
+        };
+        
+        var color = function randomColor() {
+            var char ='0123456789ABCDEF';
+            var color = '#';
+            
+            for (var i = 0; i < 6; i++) {
+                color += char[Math.floor(Math.random() * 16)];
+            } 
+            
+            return color;
+        }
+        
+        function getRandomposX() {
+            var x = Math.floor(Math.random() * (maxWidth - 10 )+10);
+            return x;
+        }
+        
+        function getRandomposY() {
+            var y = Math.floor(Math.random() * (maxHeight - 10 )+10);
+            return y;
+        }
+        
+        var rectangles = new Array(50);
+        
+        for (var i = 0; i <= 50; i++) {
+            rectangles[i] = new Rectangle(getRandomposX(), getRandomposY(), 10, 10, movX, movY, color());
+            console.log(rectangles[i]);
+        }
+        
+        function startLoad() {
+            var board = document.getElementById("canvas");
+            var boardPanel = board.getContext('2d');
+            
+            rectangles[0].clearBoard(boardPanel);
+            
+            for(var i = 0; i <= 50 ; i++) {
+                rectangles[i].moveRectangle();
+                rectangles[i].drawRectangle(boardPanel);
+            }
+            
+            setTimeout("startLoad()",20);
+        }       
+    </script>
+    
+    <body>
+          <canvas id="canvas" width="700" height="500" style="border:1px solid #000000;"></canvas>
+    </body>
+    
+</html>
