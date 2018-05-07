@@ -1,4 +1,4 @@
-# Practica2 Desarrollo de Sistemas Infórmaticos
+# Práctica 2 Desarrollo de Sistemas Infórmaticos
 
 ## Práctica 2: Objetos en JavaScript
 
